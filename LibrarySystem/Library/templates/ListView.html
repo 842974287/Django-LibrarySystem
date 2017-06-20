@@ -1,0 +1,49 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html">
+        <meta charset="UTF-8">
+
+        <title>
+            信息列表
+        </title>
+
+        <script type="text/javascript" src = "{% static 'js/jquery-3.1.1.min.js' %}" ></script>
+
+    </head>
+
+    <body>
+      <table border="1px">
+        <thead>
+          <tr>
+            <td>姓名</td>
+            <td>联系方式</td>
+            <td>6月24日 周六10:10-11:40</td>
+            <td>6月27日 周二早上3-4节</td>
+            <td>7月2日 周日14:00-17:00</td>
+            <td>7月4日 周二9:00-11:00</td>
+            <td>7月8日 周六10:10-11:40</td>
+            <td>7月9日 周日08:30-10:00</td>
+            <td>7月11日 周二早上3-4节</td>
+            <td>7月16日 周日08:30-10:00</td>
+          </thead>
+          <tbody>
+            {% for i in ll %}
+            <tr>
+              <td>{{i.name}}</td>
+              <td>{{i.telephone}}</td>
+              <td>{{i.TimeOne}}</td>
+              <td>{{i.TimeTwo}}</td>
+              <td>{{i.TimeThree}}</td>
+              <td>{{i.TimeFour}}</td>
+              <td>{{i.TimeFive}}</td>
+              <td>{{i.TimeSix}}</td>
+              <td>{{i.TimeSeven}}</td>
+              <td>{{i.TimeEight}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </body>
+</html>

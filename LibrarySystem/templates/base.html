@@ -1,0 +1,161 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% block other_meta %}
+        {% endblock %}
+        <title>
+            {% block title %}
+            {% endblock %}
+        </title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+        <style>
+            @media screen and (max-width: 650px){
+                #carousel-adapt{display: none;}
+                #carousel-pics{display: none;}
+            }
+
+        </style>
+        <script type="text/javascript" src = "{% static 'js/jquery-3.1.1.min.js' %}" ></script>
+
+        {% block style %}
+        {% endblock %}
+    </head>
+
+    <body>
+    <div>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'app_TuringClass:Home_TuringClass' %}" style="padding-top: 2px">
+                         <img src="{% static 'image/logo.png' %}" alt="" class="img-responsive">
+                    </a>
+                </div>
+
+                <div class="navbar-collapse collapse navbar-right scroll-me">
+                    <ul class="nav navbar-nav ">
+                        <li {% if Home_active %} class="active" {% endif %}>
+                            <a href="{% url 'app_TuringClass:Home_TuringClass' %}"> 主页 </a>
+                        </li>
+
+                        <li {% if OnLineEaxm_active %} class="active" {% endif %}>
+                            <a href = "{% url 'app_OnlineExam:Exam' %}"> 我要答题 </a>
+                        </li>
+
+                        <li {% if Question_active %} class="active" {% endif %}  {% if not Login %} title="登录后才能提问" {% endif %}>
+                            <a href="{% url 'app_TuringClass:Question' %}"> 我要提问 </a>
+                        </li>
+
+
+                        <!-- <li {% if QuestionTag_active %} class="active" {% endif %}>
+                            <a href="{% url 'app_TuringClass:Tags' %}"> 问题标签 </a>
+                        </li> -->
+
+                        <!--
+                        <li {% if DownLoadArea_active %} class="active" {% endif %} {% if not Login %} title="登录后才能下载" {% endif %}>
+                            <a href="{% url 'app_TuringClass:DownloadArea' %}}"> 下载专区 </a>
+                        </li>
+                        -->
+                        <li {% if DownLoadArea_active %} class="active" {% endif %}>
+                            <a href="{% url 'app_TuringClass:DownloadArea' %}}"> 下载专区 </a>
+                        </li>
+
+                        <li {% if Help_active %} class="active" {% endif %}>
+                            <a href="{% url 'app_TuringClass:HelpContent' %}" target="_blank"> 帮助 </a>
+                        </li>
+
+                        <li {% if Login_active %} class="active" {% endif %}>
+                            {% if Login %}
+                                <a href="{% url 'app_Accounts:Logout' %}"> 退出 </a>
+                            {% else %}
+                                <a href="{% url 'app_Accounts:Login' %}"> 登录 </a>
+                            {% endif %}
+                        </li>
+
+                        {% if Login %}
+                        <li {% if Personal_active %} class="active" {% endif %}>
+                            <a href="{% url 'app_TuringClass:PersonalInfo' %}" title="查看个人信息">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div style="height: 50px"> </div>
+        <div id="carousel-adapt">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="height: auto; ">
+
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+
+            <li data-target="#carousel-example-generic" data-slide-to="1" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+
+          </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox"  id="carousel-pics">
+            <div class="item active">
+              <img id="img-adapt" src="{% static 'image/1.png' %}" alt="...">
+              <div class="carousel-caption"></div>
+            </div>
+
+            <div class="item">
+              <img id="img-adapt" src="{% static 'image/2.png' %}" alt="...">
+              <div class="carousel-caption"></div>
+            </div>
+
+            <div class="item">
+              <img id="img-adapt" src="{% static 'image/3.png' %}" alt="...">
+              <div class="carousel-caption"></div>
+            </div>
+
+          </div>
+
+          <!-- Controls -->
+          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        </div>
+    </div>
+        <!-- search-scripts -->
+
+        <!--HOME SECTION END  -->
+        {% block content %}
+        {% endblock %}
+
+        <!-- footer content is in footer.html -->
+        {% include "footer.html" %}
+
+
+    {% block other_script %}
+
+    {% endblock %}
+    </body>
+</html>

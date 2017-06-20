@@ -1,0 +1,41 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html">
+        <meta charset="UTF-8">
+
+        <title>
+            收集信息
+        </title>
+
+        <script type="text/javascript" src = "{% static 'js/jquery-3.1.1.min.js' %}" ></script>
+
+    </head>
+
+    <body>
+      <form method="post" action="/submit/" style="margin-left: 30%; margin-top: 10%">
+        姓名：
+        <input name="name" placeholder="姓名" style="font-size: 16px; margin-left: 10px; margin-top: 10px"><br>
+        手机号码：
+        <input name="telephone" placeholder="手机号码" style="font-size: 16px; margin-left: 10px; margin-top: 10px"><br>
+        6月24日 周六10:10-11:40：
+        <input name="TimeOne" value="正常出席" style="width: 200px; font-size: 16px; margin-left: 10px; margin-top: 10px"><br>
+        6月27日 周二早上3-4节:
+        <input name="TimeTwo" value="正常出席" style="width: 200px; font-size: 16px; margin-left: 10px; margin-top: 10px"><br>
+        7月2日 周日14:00-17:00:
+        <input name="TimeThree" value="正常出席" style="width: 200px; font-size: 16px; margin-left: 10px; margin-top: 10px"><br>
+        7月4日 周二9:00-11:00:
+        <input name="TimeFour" value="正常出席" style="width: 200px; font-size: 16px; margin-left: 10px; margin-top: 10px"><br>
+        7月8日 周六10:10-11:40:
+        <input name="TimeFive" value="正常出席" style="width: 200px; font-size: 16px; margin-left: 10px; margin-top: 10px"><br>
+        7月9日 周日08:30-10：00:
+        <input name="TimeSix" value="正常出席" style="width: 200px; font-size: 16px; margin-left: 10px; margin-top: 10px"><br>
+        7月11日 周二早上3-4节:
+        <input name="TimeSeven" value="正常出席" style="width: 200px; font-size: 16px; margin-left: 10px; margin-top: 10px"><br>
+        7月16日 周日08:30-10:00:
+        <input name="TimeEight" value="正常出席" style="width: 200px; font-size: 16px; margin-left: 10px; margin-top: 10px"><br>
+        <input id="submit" type="submit" value="提交" style="width: 100px; background: 80px; margin: 10px; font-size: 20px" onclick="$('#submit').css('disabled','disabled');">
+      </form>
+    </body>
+</html>
