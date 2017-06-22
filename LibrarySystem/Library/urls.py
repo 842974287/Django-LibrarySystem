@@ -6,6 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'Library.views.HomePage', name = 'HomePage'),
-    url(r'^submit/$', 'Library.views.Submit', name = 'Submit'),
-    url(r'^showlist/$', 'Library.views.ShowList', name = 'ShowList'),
+    url(r'^Login/$', 'Library.views.Login', name = 'Login'),
+    url(r'^Register$', 'Library.views.Register', name = 'Register'),
+    url(r'^ReaderInfo$', 'Library.views.ReaderInfo', name = 'ReaderInfo'),
 )

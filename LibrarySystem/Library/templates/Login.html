@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+	图书馆 - 登录
+{% endblock %}
+
+{% block style %}
+    <style type="text/css">
+        .pre-scrollable{
+            max-height: 340px;
+            overflow-y: scroll;
+        }
+        .error_msg{
+            color:red;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<!--test log in-->
+<div class="container" align="center" style=" width: 300px; height:400px;padding: 10px">
+    <form method="POST" action="/Accounts/login/" class="form-signin" role="form" id="form-login" autocomplete="off">
+        <h2 class="form-signin-heading">welcome back!</h2>
+        <table>
+            <div><span class="glyphicon glyphicon-user" style="color: #8E8E8E;"> </span>
+                {{ obj1.username }}
+                {%  if obj1.errors.username %}
+                    <br>
+                    <span class="error_msg">{{ obj1.errors.username.0 }}</span>
+                {% endif %}
+            </div>
+            <br>
+            <div><span class="glyphicon glyphicon-lock" style="color: #8E8E8E;"> </span>
+                {{ obj1.pwd }}
+                {%  if obj1.errors.pwd %}
+                    <br>
+                    <span class="error_msg">{{ obj1.errors.pwd.0 }}</span>
+                {% endif %}
+            </div>
+            <div>
+                {%  if obj1.non_field_errors %}
+                    {% for item in obj1.non_field_errors %}
+                        <span class="error_msg">{{ item }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <br>
+            <div style="margin-padding: 20px">
+                <tr>
+                    <td>
+                        <input class="btn btn-sm btn-primary btn-block" style="background-color: #b07675; border: none" type="submit" name="登录" >
+                    </td>
+                    <td>
+                        <p style="width=15px">&emsp;</p>
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-primary btn-block" style="background-color: #b07675; border: none;" href="{% url 'Library:Register' %}">注册</a>
+                    </td>
+                </tr>
+            </div>
+        </table>
+    </form>
+</div>
+
+
+
+
+
+{% endblock %}
+
+{% block other_script %}
+<script type="text/javascript">
+	$('#form-login').one('submit', function() {
+		console.log("clicked");
+		$(this).find('input[type="submit"]').attr('disabled','disabled');
+	});
+</script>
+{% endblock %}
