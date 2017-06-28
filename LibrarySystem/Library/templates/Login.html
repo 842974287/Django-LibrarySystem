@@ -20,7 +20,7 @@
 {% block content %}
 <!--test log in-->
 <div class="container" align="center" style=" width: 300px; height:400px;padding: 10px">
-    <form method="POST" action="/Accounts/login/" class="form-signin" role="form" id="form-login" autocomplete="off">
+    <form method="POST" action="/Login/" class="form-signin" role="form" id="form-login" autocomplete="off">
         <h2 class="form-signin-heading">welcome back!</h2>
         <table>
             <div><span class="glyphicon glyphicon-user" style="color: #8E8E8E;"> </span>
@@ -48,8 +48,14 @@
             <br>
             <div style="margin-padding: 20px">
                 <tr>
+									<td>
+											<a  class="btn btn-sm btn-primary btn-block" style="background-color: #b07675; border: none" href="/admin/">管理员登录</a>
+									</td>
+									<td>
+											<p style="width=15px">&emsp;</p>
+									</td>
                     <td>
-                        <input class="btn btn-sm btn-primary btn-block" style="background-color: #b07675; border: none" type="submit" name="登录" >
+                        <input class="btn btn-sm btn-primary btn-block" style="background-color: #b07675; border: none" type="submit" value="登录" >
                     </td>
                     <td>
                         <p style="width=15px">&emsp;</p>

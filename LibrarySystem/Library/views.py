@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from Library.models import *
 from django import forms
 import time
+import re
 # Create your views here.
 
 def HomePage(request):
@@ -30,8 +31,9 @@ class LoginForm(forms.Form):
         cleaned_data = self.cleaned_data
         username = cleaned_data.get('username')
         password = cleaned_data.get('pwd')
-        user = LibraryUser.objects.filter(Username = username)
-        if not user:
+        try:
+            user = LibraryUser.objects.get(Username = username)
+        except Exception as e:
             raise forms.ValidationError('用户不存在!')
         else:
             if user.Password != password:
@@ -103,6 +105,7 @@ def UserCheck(request):
 
 @csrf_exempt
 def Register(request):
+    context = {}
     if request.POST:
         objPost = RegisterForm(request.POST)
         ret = objPost.is_valid()
@@ -112,8 +115,9 @@ def Register(request):
             telephone = objPost.cleaned_data['phone']
             user = LibraryUser(Username = username, Password = password)
             user.save()
-            Reader(ReaderId = time.strftime("%Y%m%d%H%M%S", time.gmtime()), Telephone = phone, User = user)
+            Reader(ReaderId = time.strftime("%Y%m%d%H%M%S", time.gmtime()), Telephone = telephone, User = user)
             request.session['username'] = username
+            context['UserType'] = 0
             return HttpResponseRedirect('/ReaderInfo/')
         return render(request, 'Register.html', {'obj1': objPost})
     else:
@@ -132,15 +136,22 @@ def Login(request):
             username = objPost.cleaned_data['username']
             request.session['username'] = username
             user = LibraryUser.objects.get(Username = username)
-            context['UserType'] = 1
-            return HttpResponseRedirect('/PersonalInfo/')
+            if user.Type == 0:
+                context['UserType'] = 0;
+            else:
+                context['UserType'] = 1;
+            context['Login_active'] = True
+            return HttpResponseRedirect('/ReaderInfo/')
         context['obj1'] = objPost
+        context['Login_active'] = False
         return render(request,'Login.html', context)
     else:
         if not request.session.has_key('UserID'):
             objGet = LoginForm()
             context['obj1'] = objGet
+            context['Login_active'] = False
             return render(request,'Login.html', context)
+        context['Login_active'] = True
         return HttpResponseRedirect('/ReaderInfo/')
 
 @csrf_exempt
@@ -148,3 +159,25 @@ def Logout(request):
     if request.session.has_key('username'):
         request.session.pop('username')
     return HttpResponseRedirect('/Login/')
+
+def BorrowBookPage(request):
+    context = {}
+    if request.session.has_key('username'):
+        context['Login_active'] = True
+        return render(request, 'BorrowBookPage.html', context)
+    return HttpResponseRedirect('/Login/')
+
+def ShowAllBooks():
+    bookList = Book.objects.all();
+    bookSet = []
+    for book in bookList:
+		q={}
+		q['ISBN'] = book.ISBN
+		q['BookName'] = book.BookName
+		q['PublishingCompany'] = book.PublishingCompany
+		q['Author'] = book.Author
+		q['Storage'] = book.Storage
+		q['Number'] = book.Number
+		q['CanBorrow'] = (book.Number > 0)
+		bookSet.append(q)
+	return bookSet

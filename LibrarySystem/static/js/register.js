@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
 
 $('#id_username').blur(function() {
-	$("#username_error").css("display", "none");
+	$("#user_error").css("display", "none");
 	var username = $('#id_username').val();
 	reg = /[\u4e00-\u9fa5]/
 	if (reg.test(username)) {

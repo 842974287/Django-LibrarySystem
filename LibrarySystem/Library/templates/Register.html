@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title %}
-	图灵课程 - 注册
+	图书馆 - 注册
 {% endblock %}
 
 {% block style %}
@@ -15,14 +15,14 @@
             color:red;
         }
     </style>
-		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
 {% endblock %}
 
 {% block content %}
 <!--test log in-->
 <div class="container" role="main" style="width: 350px; height:600px;padding: 10px">
 <div style="color: inherit; padding: 15px" align="center" >
-    <form action="/Accounts/register/" method="POST" autocomplete="off">
+    <form action="/Register/" method="POST" autocomplete="off">
         <h2 class="form-signin-heading" style="padding-bottom: 10px">REGIST</h2>
         <table>
 
@@ -69,7 +69,7 @@
 						<div id="phone_remind" class="error_msg1" style="display:none;"></div>
             </div>
             {%  if obj1.errors.phone %}
-                <div class="error_msg">{{ obj1.errors.phone.0 }}</div>
+                <div id="phone_error" class="error_msg">{{ obj1.errors.phone.0 }}</div>
             {% endif %}
             <div class="clear"></div>
         </div>
@@ -89,7 +89,7 @@
                         <p style="width=15px">&nbsp;</p>
                     </td>
                     <td>
-                        <input class="btn btn-sm btn-primary btn-block" type="submit" style="background-color: #b07675; border:none;font-size: 14px;" name="提交">
+                        <input class="btn btn-sm btn-primary btn-block" type="submit" style="background-color: #b07675; border:none;font-size: 14px;" value="注册">
                     </td>
                 </tr>
             </div>

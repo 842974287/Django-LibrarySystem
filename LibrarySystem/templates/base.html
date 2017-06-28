@@ -12,13 +12,13 @@
             {% block title %}
             {% endblock %}
         </title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
         <style>
             @media screen and (max-width: 650px){
                 #carousel-adapt{display: none;}
                 #carousel-pics{display: none;}
             }
-
         </style>
         <script type="text/javascript" src = "{% static 'js/jquery-3.1.1.min.js' %}" ></script>
 
@@ -40,19 +40,22 @@
 
                 <div class="navbar-collapse collapse navbar-right scroll-me">
                     <ul class="nav navbar-nav ">
-                        <li {% if Home_active %} class="active" {% endif %}>
-                            <a href=""> 主页 </a>
+                        <li class="active">
+                            <a href="/"> 主页 </a>
                         </li>
-                        <li {% if Login_active %} class="active" {% endif %}>
-                            {% if Login %}
-                                <a href=""> 退出 </a>
+                        <li class="active">
+                            <a href="/BorrowBookPage"> 借书 </a>
+                        </li>
+                        <li class="active">
+                            {% if Login_active %}
+                                <a href="/Logout"> 退出 </a>
                             {% else %}
-                                <a href=""> 登录 </a>
+                                <a href="/Login"> 登录 </a>
                             {% endif %}
                         </li>
 
                         {% if Login %}
-                        <li {% if Personal_active %} class="active" {% endif %}>
+                        <li class="active">
                             <a href="" title="查看个人信息">
                                 <span class="glyphicon glyphicon-user"></span>
                             </a>

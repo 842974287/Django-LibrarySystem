@@ -23,7 +23,6 @@ class Book(models.Model):
     Author = models.CharField(max_length = 100, verbose_name = u'作者')
     Storage = models.IntegerField(u'馆藏数量')
     Number = models.IntegerField(u'可借数量')
-    IsAvailuable = models.BooleanField(u'是否可借')
 
     def __unicode__(self):
         return self.BookName + '_' + self.Author
