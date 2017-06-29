@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title %}
-  图书馆 - 借书
+  图书馆 - 我借的图书
 {% endblock %}
 
 
@@ -12,6 +12,7 @@
 
 {% block content %}
 <div class="container" style="font-family: Hiragino Sans GB W3;">
+  <span>还书请咨询前台管理员！</span>
   <div class="panel-body">
     <table id="DataTable_QuestionList" class="table" style="border: none;">
       <thead>
@@ -21,7 +22,7 @@
         </tr>
       </thead>
       <tbody >
-        {% for book in BookSet %}
+        {% for book in bookSet %}
         <tr>
           <td style="text-align: center;"></td>
           <td>
@@ -29,16 +30,11 @@
 
               <div class="summary">
                 <span style="text-decoration:none; " class="question-hyperlink" title="">
-                  <span class="   glyphicon glyphicon-fire"></span> {{book.BookName}} <strong style="color: #d0d0d0;">[作者：{{ book.Author }}]</strong>
+                  <span class="   glyphicon glyphicon-fire"></span> {{book.BookName}} <strong style="color: #d0d0d0;">[ISBN：{{ book.ISBN }}]</strong>
                 </span>
-
-                <span class="relativetime">出版社：{{book.PublishingCompany}}</span>
-
                   <div class="started pull-right" style="color:  #666;text-align: bottom; font-size:12px;">
-                    <span title="可借数量" class="relativetime">可借数量：{{book.Number}}</span>
-                    {% if book.CanBorrow %}
-                    <button style="width: 100px; height: 30px;" class="borrowButton personal-button" id="{{book.ISBN}}">借阅</button>
-                    {% endif %}
+                    <span class="relativetime">最后期限：{{ book.DeadLine|date:"Y-m-d" }}</span>
+                    <span class="relativetime">罚金：{{book.Panelty}} 元</span>
                   </div>
 
               </div>
@@ -58,5 +54,4 @@
 {% block other_script %}
 <script type="text/javascript" src = "{% static 'js/jquery.dataTables.min.js' %}" ></script>
 <script type="text/javascript" src = "{% static 'js/TableFunction.js' %}" ></script>
-<script type="text/javascript" src = "{% static 'js/ButtonFunction.js' %}" ></script>
 {% endblock %}

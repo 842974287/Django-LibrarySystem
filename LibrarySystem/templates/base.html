@@ -40,12 +40,20 @@
 
                 <div class="navbar-collapse collapse navbar-right scroll-me">
                     <ul class="nav navbar-nav ">
+                      <li class="active">
+                          <a href="/admin/"> 系统后台 </a>
+                      </li>
                         <li class="active">
                             <a href="/"> 主页 </a>
                         </li>
                         <li class="active">
                             <a href="/BorrowBookPage"> 借书 </a>
                         </li>
+                        {% if Login_active %}
+                        <li class="active">
+                            <a href="/MyBook"> 已借图书 </a>
+                        </li>
+                        {% endif %}
                         <li class="active">
                             {% if Login_active %}
                                 <a href="/Logout"> 退出 </a>
@@ -54,10 +62,10 @@
                             {% endif %}
                         </li>
 
-                        {% if Login %}
+                        {% if Login_active %}
                         <li class="active">
-                            <a href="" title="查看个人信息">
-                                <span class="glyphicon glyphicon-user"></span>
+                            <a href="/ReaderInfo" title="查看个人信息">
+                                <span class="glyphicon glyphicon-user">个人信息</span>
                             </a>
                         </li>
                         {% endif %}

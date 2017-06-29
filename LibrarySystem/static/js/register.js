@@ -9,7 +9,7 @@ $('#id_username').blur(function() {
 	}
 	else if (username.length > 5) {
 		$.ajax({
-			url: '/Accounts/UserCheck/',
+			url: '/UserCheck/',
 			type: 'POST',
 			dataType: 'json',
 			data: {

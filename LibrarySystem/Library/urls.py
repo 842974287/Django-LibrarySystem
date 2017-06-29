@@ -11,4 +11,12 @@ urlpatterns = patterns('',
     url(r'^ReaderInfo/$', 'Library.views.ReaderInfo', name = 'ReaderInfo'),
     url(r'^Logout/$', 'Library.views.Logout', name = 'Logout'),
     url(r'^BorrowBookPage/$', 'Library.views.BorrowBookPage', name = 'BorrowBookPage'),
+    url(r'^BorrowBook/$', 'Library.views.BorrowBook', name = 'BorrowBook'),
+    url(r'^ModifyData/$', 'Library.views.ModifyData', name = 'ModifyData'),
+    url(r'^MyBook/$', 'Library.views.MyBook', name = 'MyBook'),
+    url(r'^ReturnBookPage/$', 'Library.views.ReturnBookPage', name = 'ReturnBookPage'),
+    url(r'^BeginReturnPage/$', 'Library.views.BeginReturnPage', name = 'BeginReturnPage'),
+    url(r'^ReturnBook/$', 'Library.views.ReturnBook', name = 'ReturnBook'),
+    url(r'^UserCheck/$', 'Library.views.UserCheck', name = 'UserCheck'),
+
 )

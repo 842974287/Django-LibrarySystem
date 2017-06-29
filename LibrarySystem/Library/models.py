@@ -11,10 +11,10 @@ class LibraryUser(models.Model):
     )
     Username = models.CharField(max_length = 20, primary_key = True, verbose_name = u'用户名')
     Password = models.CharField(max_length = 20, verbose_name = u'密码')
-    Type = models.IntegerField(default = 0, choices = TYPE_CHOICES, verbose_name = '用户类型')
+    Type = models.IntegerField(default = 0, choices = TYPE_CHOICES, verbose_name = u'用户类型')
 
     def __unicode__(self):
-        return self.Username + '_' + self.Type
+        return self.Username
 
 class Book(models.Model):
     ISBN = models.CharField(max_length = 20, primary_key = True, verbose_name = u'ISBN')
@@ -34,7 +34,7 @@ class Reader(models.Model):
         (2, '女'),
     )
     ReaderId = models.CharField(max_length = 20, primary_key = True, verbose_name = u'读者Id')
-    ReaderName = models.CharField(max_length = 20, verbose_name = u'姓名', null = True, blank = True)
+    ReaderName = models.CharField(default = u"读者", max_length = 20, verbose_name = u'姓名', null = True, blank = True)
     Gender = models.IntegerField(default = 0, choices = GENDER_CHOICES, verbose_name = u'性别')
     MaxBook = models.IntegerField(default = 10, verbose_name = u'可借数量')
     Borrowed = models.IntegerField(default = 0, verbose_name = u'已借数量')

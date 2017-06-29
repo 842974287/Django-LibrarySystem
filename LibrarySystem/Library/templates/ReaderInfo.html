@@ -10,8 +10,127 @@
 {% endblock %}
 
 {% block content %}
+<div id="modifyDiv" style="position:fixed;
+display:none;
+width:100%;
+height:100%;
+z-index:9999;
+opacity:0.6;
+background-color: white;
+top:0;
+left:0;">
+</div>
+
+<div id="modifyReg" style="position: absolute;
+        display: none;
+        left: 30%;
+        top: 30%;
+        background: white;
+        width: 40%;
+                height: auto;
+        border: 3px solid #444;
+        border-radius: 7px;
+        z-index: 10000;">
+        <div style="margin: 10px 10px; padding-top:50px; padding-bottom:50px;  text-align: center;">
+
+          <form  action="/ModifyData/" method="post">
+            <div class="basics_mess_total" >
+            <div  class="basics_mess" >
+              <span class="glyphicon glyphicon-phone"></span>&nbsp;姓名：
+            </div>
+            <div class="basics_mess_right">
+              {% if user.ReaderName %}
+              <input id="telephone_in" type="text" name="ReaderName" value="{{user.ReaderName}}" >
+              {% else %}
+              <input id="telephone_in" type="text" name="ReaderName" placeholder="暂未设置" >
+              {% endif %}
+            </div>
+            <br>
+            <div  class="basics_mess" >
+              <span class="glyphicon glyphicon-comment"></span>&nbsp;性别：
+            </div>
+            <div class="basics_mess_right">
+              <select name="Gender" id="Gender" style="height:25px;">
+                <option value="保密" style="font-size: 15px;">保密</option>
+                <option value="男" style="font-size: 15px;">男</option>
+                <option value="女" style="font-size: 15px;">女</option>
+              </select>
+            </div>
+            </div>
+            <input type="submit" value="确认修改" class="upload-button">
+            <br>
+
+          </form>
+          <button onclick="$('#modifyReg').slideToggle(1000);$('#modifyDiv').css('display','none');" style="margin:0 auto;" class="personal-button" >
+            取消
+          </button>
+        </div>
+</div>
 
 
+<div style="color: inherit; padding: 15px" align="center" class="basics_info container">
+
+  <table>
+
+    <div class="basics_mess_total">
+      <div  class="basics_mess" >
+        <span class="glyphicon glyphicon-user"></span>&nbsp;用户名:
+      </div>
+      <div class="basics_mess_right">
+        <span id='username'>{{user.Username}}</span>
+      </div>
+
+
+      <div  class="basics_mess" >
+        <span class="glyphicon glyphicon-heart-empty"></span>&nbsp;姓名:
+      </div>
+      <div class="basics_mess_right">
+        <span id="nickname">{{user.ReaderName}}</span>
+      </div>
+
+      <div  class="basics_mess" >
+        <span class="glyphicon glyphicon-phone"></span>&nbsp;手机号码:
+      </div>
+      <div class="basics_mess_right">
+        <span id="telephone">
+          {{user.Telephone}}
+        </span>
+      </div>
+
+      <div  class="basics_mess" >
+        <span class="glyphicon glyphicon-heart-empty"></span>&nbsp;性别:
+      </div>
+      <div class="basics_mess_right">
+        <span id="nickname">{{user.Gender}}</span>
+      </div>
+
+      <div  class="basics_mess" >
+        <span class="glyphicon glyphicon-heart-empty"></span>&nbsp;已借图书数量:
+      </div>
+      <div class="basics_mess_right">
+        <span id="nickname">{{user.Borrowed}}</span>
+      </div>
+
+      <div  class="basics_mess" >
+        <span class="glyphicon glyphicon-heart-empty"></span>&nbsp;可借图书总数:
+      </div>
+      <div class="basics_mess_right">
+        <span id="nickname">{{user.MaxBook}}</span>
+      </div>
+
+    </div>
+  </table>
+  {% if admin %}
+  <button onclick="window.location = '/ReturnBookPage'" class="personal-button" >
+				处理还书请求
+  </button>
+  {% endif %}
+  <button onclick="$('#modifyReg').slideToggle(500);$('#modifyDiv').css('display','inline');" class="personal-button" >
+				编辑资料
+  </button>
+
+
+</div>
 
 {% endblock %}
 
